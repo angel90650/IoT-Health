@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+  	<script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+     <style>
+     /* Force scrollbars onto browser window */
+     body {
+     margin-bottom: 200%;
+     }
+     .textBox{
+       height: 200px;
+     }
+     .jumbotron {
+    margin-bottom: 0px;
+    background-image: url(https://images.unsplash.com/photo-1445630945852-d2fe3e22edf9?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+     /* Box styles */
+     .myBox {
+     border-style: solid;
+     border: 1px solid #36a2eb;
+     border-radius: 10px;
+     padding: 2%;
+
+     height:300px;
+     padding-bottom: 0%;
+     position:relative;
+     overflow: scroll;
+     }
+
+     /* Scrollbar styles */
+     ::-webkit-scrollbar {
+     width: 12px;
+     height: 12px;
+     }
+
+     ::-webkit-scrollbar-track {
+     border: 1px lightblue;
+     border-radius: 10px;
+     }
+
+     ::-webkit-scrollbar-thumb {
+     background: #36a2eb;
+     border-radius: 10px;
+     }
+
+     ::-webkit-scrollbar-thumb:hover {
+     background: #2798e5;
+     }
+     </style>
+    <title>TIPPERS Health</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">TIPPERS</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ><a href="main2.html">Overview <span class="sr-only">(current)</span></a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Floor<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="floorPage.html">1st Floor</a></li>
+              <li><a href="floorPage.html">2nd Floor</a></li>
+              <li><a href="floorPage.html">3rd Floor</a></li>
+              <li><a href="floorPage.html">4th Floor</a></li>
+              <li><a href="floorPage.html">5th Floor</a></li>
+              <li><a href="floorPage.html">6th Floor</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#floorPage.html">All Floors</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Device<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="devicePage.html">HVAC Temp</a></li>
+              <li><a href="devicePage.html">WIFI APs</a></li>
+              <li><a href="devicePage.html">Beacons</a></li>
+              <li><a href="devicePage.html">Video Cameras</a></li>
+              <li><a href="devicePage.html">Outlet Monitors</a></li>
+              <li><a href="devicePage.html">Computers</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">All Devices</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Sensor ID">
+          </div>
+          <button type="submit" class="btn btn-default">Analyze</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="aboutPage.html">About</a></li>
+          <li><a href="contactPage.html">Contact</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3 "> IoT Health: Sensor Monitoring System</h1>
+            <p>TIPPERS: Testbed for IoT-based Privacy Preserving PERvasive Spaces</p>
+
+          </div>
+        </div>
+
+        <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>About</h2>
+            <p>The research project is a part of Testbed for IoT-based Privacy Preserving Pervasive Spaces (TIPPERS), a smart building system at University of California, Irvine that focuses on preserving privacy. The ultimate goal is to create a space that allows users to control privacy options while providing a variety of services.  The research project involves creating a system that will monitor the health (status) of the sensors used throughout the building. This elicits reviewing the state of the art in the sensor anomaly detection field and tailoring existing algorithms to the different sensors in TIPPERS. This project will explore how to best modify existing algorithms for the variety of sensors. Through the incorporation of anomaly detection, the entire smart building will become more resilient and dependable. This research can be extrapolated to many Internet of Things environments where it is necessary to have functional and accurate devices at all times.</p>
+
+<h3>Introduction</h3>
+<p>
+TIPPERS is currently implemented in Donald Bren Hall, a six story building on campus. It is comprised of several different sensors. The primary focus of TIPPERS is to use these sensors to provide services and also maintain and allow privacy options for users. The potential services that TIPPERS can provide are emergency evacuation tally in order to ensure that everyone is safely out of the building, attendance keeping to make sure that students, and faculty are showing up on time, detection of suspicious activity for security purposes, and room temperature preferences that adjust to the adjusted preferences of everyone in the room. These services and TIPPERS depends on the functionality and use of the sensors. Therefore it is imperative to have these sensors functional and accurate. The approach that will be elaborated on in this paper is developing a system that will monitor the health of the sensors. This system will analyze the data from the sensors in order to ensure normal behavior. The method in use is to incorporate anomaly detection techniques to analyze the data of the sensors. I will be incorporating two anomaly detection methods, ESD Test and MAD method.
+</p>
+          </div>
+        </div>
+
+
+        <hr>
+          <footer>
+            <p>© TIPPERS 2017</p>
+          </footer>
+        </div> <!-- /container -->
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

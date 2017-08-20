@@ -1,0 +1,6 @@
+Queries:
+
+all observations of all sensors of type i.
+all observations of all sensors of type i on the nth floor.
+all observations of all sensors of type i from timestamp a to timestamp b
+all observations of all sensors of type i on the nth floor from timestamp a to timestamp b

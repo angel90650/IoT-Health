@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+    <script
+    src="http://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+     <style>
+
+
+     .jumbotron {
+    margin-bottom: 0px;
+    background-image: url(https://images.unsplash.com/photo-1445630945852-d2fe3e22edf9?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+     /* Scrollbar styles */
+     ::-webkit-scrollbar {
+     width: 12px;
+     height: 12px;
+     }
+     ::-webkit-scrollbar-track {
+     border: 1px lightblue;
+     border-radius: 10px;
+     }
+     ::-webkit-scrollbar-thumb {
+     background: #36a2eb;
+     border-radius: 10px;
+     }
+     ::-webkit-scrollbar-thumb:hover {
+     background: #2798e5;
+     }
+     body { padding-top: 50px; }
+     .navbar-default {
+    background-color: #FFF;
+    border-color: #000;
+    }
+    table {
+          width: 100%;
+      }
+
+  thead, tbody, tr, td, th { display: block; }
+
+  tr:after {
+      content: ' ';
+      display: block;
+      visibility: hidden;
+      clear: both;
+  }
+
+  thead th {
+      height: 30px;
+
+      /*text-align: left;*/
+  }
+
+  tbody {
+      height: 350px;
+      overflow-y: auto;
+  }
+
+  thead {
+      /* fallback */
+  }
+
+
+  tbody td, thead th {
+      width: 19.2%;
+      float: left;
+  }
+     </style>
+    <title>TIPPERS Health</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">TIPPERS</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ><a href="main2.html">Overview <span class="sr-only">(current)</span></a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Floor<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="floorPage.html">1st Floor</a></li>
+              <li><a href="floorPage.html">2nd Floor</a></li>
+              <li><a href="floorPage.html">3rd Floor</a></li>
+              <li><a href="floorPage.html">4th Floor</a></li>
+              <li><a href="floorPage.html">5th Floor</a></li>
+              <li><a href="floorPage.html">6th Floor</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#floorPage.html">All Floors</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Select Device<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="devicePage.html">HVAC Temp</a></li>
+              <li><a href="devicePage.html">WIFI APs</a></li>
+              <li><a href="devicePage.html">Beacons</a></li>
+              <li><a href="devicePage.html">Video Cameras</a></li>
+              <li><a href="devicePage.html">Outlet Monitors</a></li>
+              <li><a href="devicePage.html">Computers</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">All Devices</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" action="sensorPage.html" method="GET">
+          <div class="form-group">
+            <input name="sensorIdInput" type="text" class="form-control" placeholder="Sensor ID">
+          </div>
+          <button id="sensorIdAnalyze"type="submit" class="btn btn-default">Analyze</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="aboutPage.html">About</a></li>
+          <li><a href="contactPage.html">Contact</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3 "> IoT Health: Sensor Monitoring System</h1>
+            <p>TIPPERS: Testbed for IoT-based Privacy Preserving PERvasive Spaces</p>
+            <p><a class="btn btn-primary btn-lg " id="refreshBtn" role="button" > <span class="glyphicon glyphicon-refresh"></span> Refresh</a></p>
+          </div>
+        </div>
+
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4 ">
+              <h2>Select Floors </h2>
+              <hr>
+            </div>
+            <div class="col-md-8">
+              <h2>Anomaly Log</h2>
+              <hr>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="checkbox"><label><input  type="checkbox"> All Floors</label></div>
+              <hr>
+              <div class="checkbox"><label><input type="checkbox">1st Floor</label></div>
+              <div class="checkbox"><label><input type="checkbox">2nd Floor</label></div>
+              <div class="checkbox"><label><input type="checkbox">3rd Floor</label></div>
+              <div class="checkbox"><label><input type="checkbox">4th Floor</label></div>
+              <div class="checkbox"><label><input type="checkbox">5th Floor</label></div>
+              <div class="checkbox"><label><input type="checkbox">6th Floor</label></div>
+              <hr>
+              <button type="button" class="btn btn-primary btn-lg">Analyze</button>
+            </div>
+            <div class="container col-md-8">
+
+    <table class="table table-fixed table-hover">
+    <thead>
+      <tr>
+        <th class="col-xs-3">Sensor</th>
+        <th class="col-xs-2">Time</th>
+        <th class="col-xs-2">ID</th>
+
+        <th class="col-xs-2">Anomaly Type</th>
+        <th class="col-xs-2">Anomaly Counter</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class='clickable-row' data-href="main2.html">
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr class='clickable-row' data-href="">
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr class='clickable-row' data-href="">
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+      <tr>
+        <td class="col-xs-3">EnergyMeter</td>
+        <td class="col-xs-2">July 11, 2017 00:03:24</td>
+        <td class="col-xs-2">Emeter4</td>
+        <td class="col-xs-2">Observational</td>
+        <td class="col-xs-2"> 1 </td>
+      </tr>
+    </tbody>
+  </table>
+
+           </div>
+
+          </div>
+
+
+          <hr>
+          <footer>
+            <p>© TIPPERS 2017</p>
+          </footer>
+        </div> <!-- /container -->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $(".clickable-row").click(function() {
+      window.location = $(this).data("href");
+  });
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

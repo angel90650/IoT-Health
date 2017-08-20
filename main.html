@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+  	<script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+     <style>
+     /* Force scrollbars onto browser window */
+     body {
+     margin-bottom: 200%;
+     }
+     .textBox{
+       height: 200px;
+     }
+     .jumbotron {
+    margin-bottom: 0px;
+    background-image: url(https://images.unsplash.com/photo-1445630945852-d2fe3e22edf9?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+     /* Box styles */
+     .myBox {
+     border-style: solid;
+     border: 1px solid #36a2eb;
+     border-radius: 10px;
+     padding: 2%;
+     height:300px;
+     padding-bottom: 0%;
+     position:relative;
+     overflow: scroll;
+     }
+     /* Scrollbar styles */
+     ::-webkit-scrollbar {
+     width: 12px;
+     height: 12px;
+     }
+     ::-webkit-scrollbar-track {
+     border: 1px lightblue;
+     border-radius: 10px;
+     }
+     ::-webkit-scrollbar-thumb {
+     background: #36a2eb;
+     border-radius: 10px;
+     }
+     ::-webkit-scrollbar-thumb:hover {
+     background: #2798e5;
+     }
+     </style>
+    <title>TIPPERS Health</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark">
+    <div class="container">
+    	<div class="navbar-header">
+    	 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    		<a href="#" class="navbar-brand"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> TIPPERS</a>
+    	</div>
+    	<div class="collapse navbar-collapse" id="bs-nav-demo">
+    	<ul class="nav navbar-nav">
+    		<li ><a href="main.html"><span class="glyphicon glyphicon-list"></span> Overview</a></li>
+    		<li><a href="SensorPage.html">Sensors</a></li>
+    	</ul>
+    	<ul class="nav navbar-nav navbar-right">
+        <li><a href="aboutPage.html">About</a></li>
+        <li><a href="contactPage.html">Contact</a></li>
+    	</ul>
+    	</div>
+    </div>
+    </nav>
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3 "> IoT Health: Sensor Monitoring System</h1>
+            <p>TIPPERS: Testbed for IoT-based Privacy Preserving PERvasive Spaces</p>
+            <p><a class="btn btn-primary btn-lg " id="refreshBtn" role="button" > <span class="glyphicon glyphicon-refresh"></span> Refresh</a></p>
+          </div>
+        </div>
+
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Temperature sensor</h2>
+              <p>This chart shows generated data based on a normal distribution of data with an average reading of 73.  This data is used to resemble Temperature data gathered from an office room. </p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+              <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Anomaly Detection</h2>
+              <p>This analysis involves statistical methods that take advantage the median and median absolute deviation of the dataset. From this, each data point is assigned a score of how likely it is to be an anomalous point. That score is shown in the chart. </p>
+              <p><a class="btn btn-secondary"  role="button">View details »</a></p>
+            </div>
+              <canvas id="myChartb" width="400" height="400"></canvas>
+           </div>
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Comparative analysis</h2>
+              This chart overlaps each datapoint with its corresponding anomaly score.
+              <p><a class="btn btn-secondary"  role="button">View details »</a></p>
+            </div>
+            <canvas width="400" height="400"></canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-mid-4 myBox">
+              <h2>Anomaly Log</h2>
+              <p>Log of the data points that where identified as anomalous according to the set preferences.</p>
+              <tbody>
+              <table  class="table table-hover" id="eventContainer">
+                <thead>
+                  <tr>
+                    <td> Data</td>
+                    <td> Anomaly Score</td>
+                    <td> Timestamp</td>
+                    <td> Sensor ID</td>
+                  </tr>
+                </thead>
+
+              </table>
+            </tbody>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Time Difference vs Time</h2>
+              <p><a class="btn btn-secondary"  role="button">View details »</a></p>
+            </div>
+            <canvas width="400" height="400"></canvas>
+            </div>
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Time Difference Anomaly Score</h2>
+              <p><a class="btn btn-secondary"  role="button">View details »</a></p>
+            </div>
+            <canvas width="400" height="400"></canvas>
+            </div>
+            <div class="col-md-4">
+              <div class="textBox">
+              <h2>Comparative analysis</h2>
+              <p><a class="btn btn-secondary"  role="button">View details »</a></p>
+            </div>
+            <canvas width="400" height="400"></canvas>
+            </div>
+          </div>
+          <hr>
+          <footer>
+            <p>© TIPPERS 2017</p>
+          </footer>
+        </div> <!-- /container -->
+<script type="text/javascript" src="mychart.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

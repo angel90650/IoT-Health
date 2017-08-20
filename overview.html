@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.14.2/math.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+     <style>
+     /* Force scrollbars onto browser window */
+     body {
+     margin-bottom: 200%;
+     }
+     .textBox{
+       height: 200px;
+     }
+     .jumbotron {
+    margin-bottom: 0px;
+    background-image: url(https://images.unsplash.com/photo-1445630945852-d2fe3e22edf9?dpr=2&auto=format&fit=crop&w=1080&h=720&q=80&cs=tinysrgb&crop=);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+     /* Box styles */
+     .myBox {
+     border-style: solid;
+     border: 1px solid #36a2eb;
+     border-radius: 10px;
+     padding: 2%;
+
+     height:300px;
+     padding-bottom: 0%;
+     position:relative;
+     overflow: scroll;
+     }
+
+     /* Scrollbar styles */
+     ::-webkit-scrollbar {
+     width: 12px;
+     height: 12px;
+     }
+
+     ::-webkit-scrollbar-track {
+     border: 1px lightblue;
+     border-radius: 10px;
+     }
+
+     ::-webkit-scrollbar-thumb {
+     background: #36a2eb;
+     border-radius: 10px;
+     }
+
+     ::-webkit-scrollbar-thumb:hover {
+     background: #2798e5;
+     }
+     </style>
+    <title>TIPPERS Health</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark">
+    <div class="container">
+    	<div class="navbar-header">
+    	 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    		<a href="#" class="navbar-brand"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> TIPPERS</a>
+    	</div>
+    	<div class="collapse navbar-collapse" id="bs-nav-demo">
+    	<ul class="nav navbar-nav">
+    		<li ><a href="main.html"><span class="glyphicon glyphicon-list"></span> Overview</a></li>
+    		<li><a href="SensorPage.html">Sensors</a></li>
+    	</ul>
+    	<ul class="nav navbar-nav navbar-right">
+        <li><a href="aboutPage.html">About</a></li>
+        <li><a href="contactPage.html">Contact</a></li>
+    	</ul>
+    	</div>
+    </div>
+    </nav>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3 "> IoT Health: Sensor Monitoring System</h1>
+            <p>TIPPERS: Testbed for IoT-based Privacy Preserving PERvasive Spaces</p>
+            <p><a class="btn btn-primary btn-lg "  role="button" > <span class="glyphicon glyphicon-refresh"></span> Refresh</a></p>
+          </div>
+        </div>
+        <div class="container">
+          <div class="nav">
+            <ul class="nav nav-tabs">
+
+
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#homeAll">Overview<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a data-toggle="tab" href="#homeAll">All Devices</a></li>
+                      <li><a data-toggle="tab" href="#homeTemp">HVAC Temp</a></li>
+                      <li><a data-toggle="tab" href="#homeAP">Wifi Access points</a></li>
+                      <li><a data-toggle="tab" href="#homeBeac">Beacons</a></li>
+                      <li><a data-toggle="tab" href="#homeComp">Computers</a></li>
+                      <li><a data-toggle="tab" href="#homeCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#1stAll">1st Floor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a data-toggle="tab" href="#1stAll">All Devices</a></li>
+                      <li><a data-toggle="tab" href="#1stTemp">HVAC Temp</a></li>
+                      <li><a data-toggle="tab" href="#1stAP">Wifi Access points</a></li>
+                      <li><a data-toggle="tab" href="#1stBeac">Beacons</a></li>
+                      <li><a data-toggle="tab" href="#1stComp">Computers</a></li>
+                      <li><a data-toggle="tab" href="#1stCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#2ndAll">2nd Floor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#2ndAll">All Devices</a></li>
+                    <li><a data-toggle="tab" href="#2ndTemp">HVAC Temp</a></li>
+                    <li><a data-toggle="tab" href="#2ndAP">Wifi Access points</a></li>
+                    <li><a data-toggle="tab" href="#2ndBeac">Beacons</a></li>
+                    <li><a data-toggle="tab" href="#2ndComp">Computers</a></li>
+                    <li><a data-toggle="tab" href="#2ndCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#3rdAll">3rd Floor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#3rdAll">All Devices</a></li>
+                    <li><a data-toggle="tab" href="#3rdTemp">HVAC Temp</a></li>
+                    <li><a data-toggle="tab" href="#3rdAP">Wifi Access points</a></li>
+                    <li><a data-toggle="tab" href="#3rdBeac">Beacons</a></li>
+                    <li><a data-toggle="tab" href="#3rdComp">Computers</a></li>
+                    <li><a data-toggle="tab" href="#3rdCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#4thAll">4th Floor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#4thAll">All Devices</a></li>
+                    <li><a data-toggle="tab" href="#4thTemp">HVAC Temp</a></li>
+                    <li><a data-toggle="tab" href="#4thAP">Wifi Access points</a></li>
+                    <li><a data-toggle="tab" href="#4thBeac">Beacons</a></li>
+                    <li><a data-toggle="tab" href="#4thComp">Computers</a></li>
+                    <li><a data-toggle="tab" href="#4thCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#5thAll">5th FLoor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#5thAll">All Devices</a></li>
+                    <li><a data-toggle="tab" href="#5thTemp">HVAC Temp</a></li>
+                    <li><a data-toggle="tab" href="#5thAP">Wifi Access points</a></li>
+                    <li><a data-toggle="tab" href="#5thBeac">Beacons</a></li>
+                    <li><a data-toggle="tab" href="#5thComp">Computers</a></li>
+                    <li><a data-toggle="tab" href="#5thCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#6thAll">6th Floor<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="tab" href="#6thAll">All Devices</a></li>
+                    <li><a data-toggle="tab" href="#6thTemp">HVAC Temp</a></li>
+                    <li><a data-toggle="tab" href="#6thAP">Wifi Access points</a></li>
+                    <li><a data-toggle="tab" href="#6thBeac">Beacons</a></li>
+                    <li><a data-toggle="tab" href="#6thComp">Computers</a></li>
+                    <li><a data-toggle="tab" href="#6thCam">Video Cameras</a></li>
+                  </ul>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="tab-content">
+              <div id="All" class="tab-pane fade in active">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="Temp" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="AP" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="Beac" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="Comp" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="Cam" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="1stAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="1stTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="1stAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="1stBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="1stComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="1stCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="2ndAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="2ndTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="2ndAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="2ndBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="2ndComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="2ndCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="3rdAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="3rdTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="3rdAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="3rdBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="3rdComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="3rdCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="4thAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="4thTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="4thAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="4thBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="4thComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="4thCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="5thAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="5thTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="5thAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="5thBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="5thComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="5thCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="6thAll" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="6thTemp" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+              <div id="6thAP" class="tab-pane fade">
+                  <h3>Section A</h3>
+                  <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+              </div>
+              <div id="6thBeac" class="tab-pane fade">
+                  <h3>Section B</h3>
+                  <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+              </div>
+              <div id="6thComp" class="tab-pane fade">
+                  <h3>Dropdown 1</h3>
+                  <p>WInteger convallis, nulla in sollicitudin placerat, ligula enim auctor lectus, in mollis diam dolor at lorem. Sed bibendum nibh sit amet dictum feugiat. Vivamus arcu sem, cursus a feugiat ut, iaculis at erat. Donec vehicula at ligula vitae venenatis. Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit. Pellentesque consectetur eros.</p>
+              </div>
+              <div id="6thCam" class="tab-pane fade">
+                  <h3>Dropdown 2</h3>
+                  <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+              </div>
+
+          </div>
+
+
+
+
+          <hr>
+
+          <footer>
+            <p>© TIPPERS 2017</p>
+          </footer>
+        </div> <!-- /container -->
+
+<script type="text/javascript" src="pract.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>
